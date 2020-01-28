@@ -1,6 +1,100 @@
-﻿<h3>Productos</h3>
+﻿@page "/productos"
 @using RegistroBlazorApp.Data
+<h3>Productos</h3>
+
+ 
+
+<EditForm Model="@productos" OnInvalidSubmit="@Crear">
+    <DataAnnotationsValidator />
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="ProductoIdText">Id</label>
+            <InputText id="ProductoIdText"  class="form-control"  />
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+        <div class="form-group col-md-1">
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="DescripcionText">Descripcion</label>
+            <InputText  @bind-Value="@productos.Desrcipcion" id="DescripcionText" />
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputEdad">Edad</label>
+            <input type="number" class="form-control" id="inputEdad" placeholder="Ejem: 25">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNombreUsuario">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="inputNombreUsuario1" placeholder="Ejem: JuanP12">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputPassword">Contrseña</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputConfirmPassword">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="inputConfirmPassword1" placeholder="Confirmar Contraseña">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputDireccion">Direccion</label>
+            <input type="text" class="form-control" id="inputDireccion" placeholder="1234 Main St">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCiudad">Ciudad</label>
+            <input type="text" class="form-control" id="inputCiudad" placeholder="San Francisco de Macoris">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputNivelUsuario">Nivel de Usuario</label>
+            <select id="inputNivelUsuario" class="form-control">
+                <option selected>Nivel de Usuario...</option>
+                <option>Administrador</option>
+                <option>Cajero</option>
+                <option>Gerente</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <button type="submit" class="btn btn-primary">Nuevo</button>
+        </div>
+        <div class="form-group col-md-1">
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+        <div class="form-group col-md-1">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+    </div>
+
+
+
+</EditForm>
+
+
+
 
 @code {
+    Productos productos = new Productos();
+    Contexto db = new Contexto();
+    public void Crear()
+    {
+
+    }
+
 
 }
