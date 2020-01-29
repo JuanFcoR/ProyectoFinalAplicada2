@@ -22,8 +22,32 @@
 
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="FechaDate">Fecha</label>
-                <InputDate id="FechaDate" @bind-Value="@prod.Fecha" />
+                <label for="FechaDate">Fecha</label><br />
+                <InputDate id="FechaDate" @bind-Value="@prod.Fecha" class="form-control"/>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="DescripcionText">Descripcion</label><br />
+                <InputText id="DescripcionText" @bind-Value="@prod.Descripcion" class="form-control"/>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="CantidadNumber">Cantidad</label><br />
+                <InputNumber id="CantidadNumber" @bind-Value="@prod.Cantidad" class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="MinimoNumber">Minimo</label><br />
+                <InputNumber id="MinimoNumber" @bind-Value="@prod.Minimo" class="form-control" />
             </div>
 
         </div>
@@ -31,33 +55,8 @@
 
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="DescripcionText">Descripcion</label>
-                <InputText id="DescripcionText" @bind-Value="@prod.Descripcion" />
-            </div>
-
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="CantidadNumber">Cantidad</label>
-                <InputNumber id="CantidadNumber" @bind-Value="@prod.Cantidad" />
-            </div>
-
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="MinimoNumber">Minimo</label>
-                <InputNumber id="MinimoNumber" @bind-Value="@prod.Cantidad" />
-            </div>
-
-        </div>
-
-
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="UnidadText">Unidad</label>
-                <select id="inputNivelUsuario" class="form-control" @bind="@prod.Unidad">
+                <label for="UnidadText">Unidad</label><br />
+                <select id="inputNivelUsuario" class="form-control" @bind="@prod.Unidad" >
                     <option selected>Unidad...</option>
                     <option>Libra</option>
                     <option>Kilogramos</option>
@@ -67,12 +66,26 @@
         </div>
 
         <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="MinimoNumber">Minimo</label>
-            <InputNumber id="MinimoNumber" @bind-Value="@prod.Cantidad" />
+            <div class="form-group col-md-3">
+                <label for="CostoNumber">Costo</label><br />
+                <InputNumber id="CostoNumber" @bind-Value="@prod.Costo" class="form-control"/>
+            </div>
         </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="PrecioNumber">Precio</label><br />
+                <InputNumber id="PrecioNumber" @bind-Value="@prod.Precio" class="form-control"/>
+            </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="GananciaNumber">Ganancia</label><br />
+                <InputNumber id="GananciaNumber" @bind-Value="@prod.Ganancia"class="form-control" />
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="form-group col-md-1">
                 <button type="submit" class="btn btn-primary">Nuevo</button>
@@ -100,7 +113,36 @@
     {
         Contexto db = new Contexto();
         db.Productos.Add(prod);
+        db.SaveChanges();
     }
+
+    
+
+    public Productos Buscar(int num)
+    {
+        Contexto db = new Contexto();
+        Productos p;
+
+        p = db.Productos.Find(num);
+
+        return p;
+    }
+
+    private Productos llenarClase()
+        {
+            Productos Pro = new Productos();
+            Pro.Fecha = DateNumber;
+            Pro.NoProducto = Convert.ToInt32(NoProductoNumericUpDown.Value);
+            Pro.Descripcion = DescripcionTextBox.Text.ToString();
+            Pro.Cantidad = Convert.ToInt32(CantidadNumericUpDown.Value);
+            Pro.Costo = CostoNumericUpDown.Value;
+            Pro.Minimo = Convert.ToInt32(MinimoNumericUpDown.Value);
+            Pro.Precio = PrecioNumericUpDown.Value;
+            Pro.Ganancia = GananciaNumericUpDown.Value;
+            Pro.Unidad = UnidadTextBox.Text;
+
+            return Pro;
+        }
 
 
 }
