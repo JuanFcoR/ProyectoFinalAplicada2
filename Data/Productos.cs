@@ -19,7 +19,20 @@ namespace RegistroBlazorApp.Data
         public decimal Precio { get; set; }
         public decimal Ganancia { get; set; }
 
-        
+        public Productos()
+        {
+            ProductoId = 0;
+            Fecha = DateTime.Now;
+            Descripcion = string.Empty;
+            Cantidad = 0;
+            Minimo = 0;
+            Unidad = string.Empty;
+            Costo = 0;
+            Precio = 0;
+            Ganancia = 0;
+        }
+
+       
     }
 
 }

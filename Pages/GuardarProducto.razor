@@ -1,0 +1,106 @@
+﻿@page "/guardarProductos"
+
+
+@using RegistroBlazorApp.Data;
+
+
+
+
+    <EditForm Model="@prod" OnInvalidSubmit="@Crear">
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="ProductoIdNumber">Id</label>
+                <InputNumber id="ProductoIdNumber" @bind-Value="@prod.ProductoId" class="form-control" />
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+            <div class="form-group col-md-1">
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="FechaDate">Fecha</label>
+                <InputDate id="FechaDate" @bind-Value="@prod.Fecha" />
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="DescripcionText">Descripcion</label>
+                <InputText id="DescripcionText" @bind-Value="@prod.Descripcion" />
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="CantidadNumber">Cantidad</label>
+                <InputNumber id="CantidadNumber" @bind-Value="@prod.Cantidad" />
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="MinimoNumber">Minimo</label>
+                <InputNumber id="MinimoNumber" @bind-Value="@prod.Cantidad" />
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="UnidadText">Unidad</label>
+                <select id="inputNivelUsuario" class="form-control" @bind="@prod.Unidad">
+                    <option selected>Unidad...</option>
+                    <option>Libra</option>
+                    <option>Kilogramos</option>
+                    <option>Litros</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="MinimoNumber">Minimo</label>
+            <InputNumber id="MinimoNumber" @bind-Value="@prod.Cantidad" />
+        </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <button type="submit" class="btn btn-primary">Nuevo</button>
+            </div>
+            <div class="form-group col-md-1">
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+            <div class="form-group col-md-1">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+
+
+
+    </EditForm>
+
+
+
+
+@code {
+    Productos productoss;
+    Productos prod = new Productos();
+
+    public void Crear()
+    {
+        Contexto db = new Contexto();
+        db.Productos.Add(prod);
+    }
+
+
+}
